@@ -3,17 +3,7 @@
 
 <div class="skincare-page detail-page">
 
-    {{-- ══ NAV ══ --}}
-    <nav class="hk-nav">
-        <a href="/" class="hk-nav-logo">
-            <span class="logo-mark">HK</span>
-            <span class="logo-text">HK <span>Beauty</span>Care</span>
-        </a>
-        <ul class="hk-nav-links">
-            <li><a href="{{ route('skincare.hk') }}">Hk BeautyCare Products</a></li>
-            <li><a href="{{ route('skincare.local') }}" class="active">Skincare Products</a></li>
-        </ul>
-    </nav>
+
 
     {{-- ══ TOMBOL KEMBALI ══ --}}
     <div class="back-navigation" style="margin: 20px 0;">
