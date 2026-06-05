@@ -14,19 +14,32 @@ class ProductLokalSeeder extends Seeder
      */
     public function run(): void
     {
-        $json = File::get("database/skincare_data.json");
+        $path = database_path('skincare_data.json');
+        
+        if (!File::exists($path)) {
+            $this->command->error("File JSON tidak ditemukan di: {$path}");
+            return;
+        }
+    
+        $json = File::get($path);
         $data = json_decode($json, true);
+    
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            $this->command->error("Format JSON tidak valid!");
+            return;
+        }
     
         foreach ($data as $obj) {
             DB::table('skincare_products')->insert([
-                'product_name' => $obj['product_name'],
-                'original_name' => $obj['original_name'],
-                'image_url' => $obj['image_url'],
-                'ingredients' => $obj['ingredients'],
-                'created_at' => now(),
-                'updated_at' => now(),
+                'product_name'  => $obj['product_name'] ?? 'N/A',
+                'original_name' => $obj['original_name'] ?? 'N/A',
+                'image_url'     => $obj['image_url'] ?? null,
+                'ingredients'   => $obj['ingredients'] ?? null,
+                'created_at'    => now(),
+                'updated_at'    => now(),
             ]);
         }
+        $this->command->info("Data berhasil di-seed!");
     }
 
 }

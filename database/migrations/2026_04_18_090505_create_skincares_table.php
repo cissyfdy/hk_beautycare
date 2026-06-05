@@ -9,13 +9,13 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('skincares', function (Blueprint $table) {
+        Schema::create('skincare_products', function (Blueprint $table) {
             $table->id();
             $table->string('product_name'); 
             $table->string('original_name'); 
-            $table->string('image_url')->nullable();
+            $table->text('image_url')->nullable();
             $table->text('ingredients')->nullable();
             $table->timestamps();
         });
